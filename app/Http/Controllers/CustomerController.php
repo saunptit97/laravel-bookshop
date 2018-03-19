@@ -96,7 +96,7 @@ class CustomerController extends Controller
         else return redirect()->route('cus-login');
     }
     public function buysuccess(){
-        return view('front-end.pages.success');
+        return view('front-end.pages.success'); 
     }
     public function logout(){
         Auth::logout();

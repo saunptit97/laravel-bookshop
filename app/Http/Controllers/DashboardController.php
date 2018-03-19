@@ -7,7 +7,9 @@ use App\User;
 use App\Product;
 use App\Bill;
 use App\Detail_Bill;
-use DB;
+use App\Contact;
+use App\Customer;
+use DB, Mail;
 class DashboardController extends Controller
 {
     public function index()
@@ -31,5 +33,30 @@ class DashboardController extends Controller
             'bill' => Bill::get()->count(),
             'products' => $products
             ]);
+    }
+    public function inbox(){
+        $contact = Contact::orderBy('id', 'DES')->get();
+        return view('admin.pages.contact' , [
+            'contact' => $contact
+        ]);
+    }
+    public function rep($id){
+        //echo $id;
+        return view('admin.pages.rep', ['id'=> $id]);
+    }
+    public function repinbox($id, Request $request){
+
+        
+        $data = [ 'content' => $request->content, 'id' => $id];
+        $customer = Contact::find($id);
+        $email = $customer->email;
+        $title = $request->title;
+        Mail::send('admin.pages.mail', $data, function ($smg) use ($email){
+            $smg->to($email)->subject($title);
+        });
+        $customer->status = 1;
+        $customer->save();
+        return redirect()->route('inbox');
+        //Mail::to($customer->email)->send('admin.pages.mail', $data);
     }
 }

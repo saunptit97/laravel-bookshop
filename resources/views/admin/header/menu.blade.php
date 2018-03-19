@@ -6,7 +6,7 @@
 				    <div class="menu">
 						<ul id="menu" >
 							<li><a href="/admin-ts"><i class="fa fa-tachometer"></i> <span> Dashboard</span><div class="clearfix"></div></a></li>
-							<li><a href="inbox.html"><i class="fa fa-envelope nav_icon"></i><span> Inbox</span><div class="clearfix"></div></a></li>
+							<li><a href="{{route('inbox')}}"><i class="fa fa-envelope nav_icon"></i><span> Inbox</span><div class="clearfix"></div></a></li>
 							<li class="table-hover"><a href=""><i class="fa fa-table"></i><span> Table-Manager</span></a>
 								<ul>
 									<li><a href="{{route('list-user')}}"><i class="fa fa-user"></i>User</a></li>

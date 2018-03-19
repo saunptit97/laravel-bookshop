@@ -123,6 +123,18 @@ Route::middleware('auth')->group(function () {
             'as' => 'admin',
             'uses' => 'DashboardController@index'
         ]);
+        Route::get('/inbox',[
+            'as' => 'inbox',
+            'uses' => 'DashboardController@inbox'
+        ]);
+        Route::get('/inbox/rep/{id}',[
+            'as' => 'rep',
+            'uses' => 'DashboardController@rep'
+        ]);
+        Route::post('/inbox/rep/{id}',[
+            'as'=> 'rep-inbox',
+            'uses' => 'DashboardController@repinbox'
+        ]);
         Route::prefix('user')->group(function(){
             Route::get('/list', [
                 'as' => 'list-user',
